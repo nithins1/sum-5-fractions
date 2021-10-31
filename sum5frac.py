@@ -1,8 +1,8 @@
 """
 For ints a, b, c, d, e.
 Find unequal fractions 1/a, 1/b, 1/c, 1/d, 1/e such that their sum is exactly 1.
-Requires user input of the maximum denominator for all fractions.
-Prints only unique solutions, For a solution, the fractions are summed in descending order.
+Only searches for solutions with a denominator under a specified maximum value.
+Prints only unique solutions. For each solution, the fractions are summed in descending order.
 """
 
 import sys
@@ -30,7 +30,7 @@ def not_seen_before(*args):
     return frozenset(args) not in solutions
 
 for a in range(2, max_denominator):
-	# Significant optimization.
+    # Significant optimization.
     # Once a (the largest fraction in the 5 sum) becomes this large, there cannot be any more solutions
     # For example, when a >= 4, there will be no further solutions because 1/4 + 1/5 + 1/6 + 1/7 + 1/8 < 1
     if (1/a + 1/(a+1) + 1/(a+2) + 1/(a+3) + 1/(a+4)) < 1:
