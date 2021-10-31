@@ -8,8 +8,8 @@ Prints only unique solutions, For a solution, the fractions are summed in descen
 import sys
 import argparse
 parser = argparse.ArgumentParser(description="Finds 5 unique fractions that add to 1.")
-parser.add_argument("-m", "--max", type=int, default=100, help="Maximum denominator to be used in fractions")
-parser.add_argument("-i", "--iterations", type=int, default=-1, help="Print message after every i iterations")
+parser.add_argument("-m", "--max", type=int, default=100, help="Maximum denominator to be used in fractions (default: 100)")
+parser.add_argument("-i", "--iterations", type=int, default=-1, help="Print message after every i iterations (default: print nothing)")
 args = parser.parse_args()
 
 num_solutions = 0
