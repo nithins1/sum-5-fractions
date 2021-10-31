@@ -5,11 +5,21 @@ Requires user input of the maximum denominator for all fractions.
 Prints only unique solutions, For a solution, the fractions are summed in descending order.
 """
 
+import sys
+import argparse
+parser = argparse.ArgumentParser(description="Finds 5 unique fractions that add to 1.")
+parser.add_argument("-m", "--max", type=int, default=100, help="Maximum denominator to be used in fractions")
+parser.add_argument("-i", "--iterations", type=int, default=-1, help="Print message after every i iterations")
+args = parser.parse_args()
+
 num_solutions = 0
-max_denominator = int(input("Maximum denominator: ")) + 1
+max_denominator = args.max + 1
 tolerance = .0000001
 solutions = set()
-iterations = 0
+i = 0
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 # Check if all fractions are different
 def all_different(*args):
@@ -30,13 +40,13 @@ for a in range(2, max_denominator):
         for c in range(2, max_denominator):
             for d in range(2, max_denominator):
                 for e in range(2, max_denominator):
-                    iterations += 1
-                    if iterations % 100000000 == 0:
-                        print(f"{iterations:,} iterations done.", flush=True)
+                    i += 1
+                    if args.iterations != -1 and i % args.iterations == 0:
+                        eprint(f"{i:,} iterations done.", flush=True)
 
                     if abs(1/a + 1/b + 1/c + 1/d + 1/e - 1) < tolerance and all_different(a, b, c, d, e) and not_seen_before(a, b, c, d, e):
                         print(f"1/{a} + 1/{b} + 1/{c} + 1/{d} + 1/{e}", flush=True)
                         num_solutions += 1
                         solutions.add(frozenset({a, b, c, d, e}))
 
-print("Number of solutions:", num_solutions)
+eprint("Number of solutions:", num_solutions)
