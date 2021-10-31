@@ -5,9 +5,13 @@ Given a max denominator D, this program searches for all solutions where a, b, c
 
 ## How to run:
 `python sum5frac.py [-h] [-m MAX] [-i ITERATIONS]`
+
 Optional arguments:
+
 `-h, --help` - print help message and exit
+
 `-m MAX, --max MAX` - Specify maximum denominator (default: 100)
+
 `-i ITERATIONS, --iterations ITERATIONS` - Log number of combinations attempted after every `ITERATIONS` trials
 
 You can redirect the output to a file and the log messages will be sent to stderr, not the file.
