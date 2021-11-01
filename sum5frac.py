@@ -34,11 +34,21 @@ for a in range(2, max_denominator):
     # Once a (the largest fraction in the 5 sum) becomes this large, there cannot be any more solutions
     # For example, when a >= 4, there will be no further solutions because 1/4 + 1/5 + 1/6 + 1/7 + 1/8 < 1
     if (1/a + 1/(a+1) + 1/(a+2) + 1/(a+3) + 1/(a+4)) < 1:
-        break;
+        break
 
     for b in range(a + 1, max_denominator):
+        # Similar optimization as above
+        if (1/b + 1/(b+1) + 1/(b+2) + 1/(b+3)) < 1 - (1/a):
+            break
+
         for c in range(b + 1, max_denominator):
+            if (1/c + 1/(c+1) + 1/(c+2)) < 1 - (1/a) - (1/b):
+                break
+
             for d in range(c + 1, max_denominator):
+                if (1/d + 1/(d+1)) < 1 - (1/a) - (1/b) - (1/c):
+                    break
+
                 for e in range(d + 1, max_denominator):
                     i += 1
                     if args.iterations != -1 and i % args.iterations == 0:
