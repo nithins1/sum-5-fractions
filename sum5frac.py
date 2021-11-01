@@ -14,20 +14,11 @@ args = parser.parse_args()
 
 num_solutions = 0
 max_denominator = args.max + 1
-tolerance = .0000001
-solutions = set()
+tolerance = .000000001
 i = 0
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
-
-# Check if all fractions are different
-def all_different(*args):
-    return len(args) == len(frozenset(args))
-
-# Check if solution is unique
-def not_seen_before(*args):
-    return frozenset(args) not in solutions
 
 for a in range(2, max_denominator):
     # Significant optimization.
@@ -54,10 +45,9 @@ for a in range(2, max_denominator):
                     if args.iterations != -1 and i % args.iterations == 0:
                         eprint(f"{i:,} iterations done.", flush=True)
 
-                    if abs(1/a + 1/b + 1/c + 1/d + 1/e - 1) < tolerance and all_different(a, b, c, d, e) and not_seen_before(a, b, c, d, e):
+                    if abs(1/a + 1/b + 1/c + 1/d + 1/e - 1) < tolerance:
                         print(f"1/{a} + 1/{b} + 1/{c} + 1/{d} + 1/{e}", flush=True)
                         num_solutions += 1
-                        solutions.add(frozenset({a, b, c, d, e}))
 
 eprint("Number of solutions:", num_solutions)
 eprint("Number of iterations:", i)
