@@ -31,6 +31,7 @@ int main(int argc, char **argv)
             }
             break;
         case 'h':
+	default:
             fprintf(stderr, "usage: ./sum5frac [-h] [-m MAX] [-i ITERATIONS]\n\n");
             fprintf(stderr, "Finds 5 unique fractions that add to 1.\n\n");
             fprintf(stderr, "optional arguments:\n");
