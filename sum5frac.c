@@ -62,7 +62,7 @@ int main(int argc, char **argv)
                     for (double e = d + 1; e <= max_denom; e++) {
                         i++;
                         if (iterations != -1 && i % iterations == 0) {
-                            fprintf(stderr, PRIu64 " iterations done.\n", i);
+                            fprintf(stderr, "%" PRIu64 " iterations done.\n", i);
                         }
 
                         if (fabs(1.0/a + 1.0/b + 1.0/c + 1.0/d + 1.0/e - 1) < TOLERANCE) {
